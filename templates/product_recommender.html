@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}LogiCore - Product Material Recommender{% endblock %}
+
+{% block content %}
+<h1 class="text-center mb-20">Product Material Recommender</h1>
+
+<div class="row">
+    <!-- Left side: Recommended Materials (from main.py) -->
+    <div class="col-third">
+        <div class="card">
+            <h2 class="card-title">Seasonal Materials</h2>
+            <p>Recommended packaging materials for the next 4 months based on weather conditions:</p>
+            
+            <div class="materials-list">
+                <ul>
+                    {% for material in recommended_materials %}
+                    <li>{{ material }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Right side: Product Recommendation Form -->
+    <div class="col-two-thirds">
+        <div class="card">
+            <h2 class="card-title">Get Packaging Recommendation</h2>
+            
+            <form action="/recommend_packaging" method="post">
+                <div class="form-group">
+                    <label for="product_type">Product Type</label>
+                    <select name="product_type" id="product_type" required>
+                        <option value="" disabled selected>Select product type</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Clothing">Clothing</option>
+                        <option value="Food">Food</option>
+                        <option value="Cosmetics">Cosmetics</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Books">Books</option>
+                        <option value="Toys">Toys</option>
+                        <option value="Medical">Medical Supplies</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="weight">Weight (kg)</label>
+                    <input type="number" name="weight" id="weight" step="0.1" min="0.1" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fragile">Fragile</label>
+                    <select name="fragile" id="fragile" required>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="temp_condition">Temperature Condition</label>
+                    <select name="temp_condition" id="temp_condition" required>
+                        <option value="Room Temp">Room Temperature</option>
+                        <option value="Cold">Cold</option>
+                        <option value="Frozen">Frozen</option>
+                        <option value="Warm">Warm</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="humidity_level">Humidity Level</label>
+                    <select name="humidity_level" id="humidity_level" required>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn">Get Recommendation</button>
+            </form>
+            
+            {% if recommendation %}
+            <div class="result-box mt-20">
+                <h3>Recommended Packaging</h3>
+                <p>{{ recommendation }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %} 

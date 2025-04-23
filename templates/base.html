@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}LogiCore{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <a href="/" class="logo">
+                    <img src="{{ url_for('static', filename='Logo2.png') }}" alt="LogiCore Logo"> LogiCore
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/product_recommender">Material Recommender</a></li>
+                    <li><a href="/find_center">Redistribution Centers</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="container text-center mt-20">
+        <p>&copy; 2025 LogiCore - Smart Logistics Solutions</p>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html> 

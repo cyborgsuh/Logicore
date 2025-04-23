@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}LogiCore - Smart Logistics Solutions{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-half">
+        <div class="card">
+            <h2 class="card-title">Product Material Recommender</h2>
+            <p>
+                Our AI-powered system recommends the best packaging materials for your products based on their characteristics 
+                such as weight, fragility, and required temperature and humidity conditions.
+            </p>
+            <a href="/product_recommender" class="btn">Get Recommendations</a>
+        </div>
+    </div>
+    
+    <div class="col-half">
+        <div class="card">
+            <h2 class="card-title">Nearest Redistribution Center</h2>
+            <p>
+                Find the closest redistribution center to your location. Just enter your latitude and longitude, 
+                and we'll show you the nearest center along with the best route to get there.
+            </p>
+            <a href="/find_center" class="btn">Find Centers</a>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-20">
+    <h2 class="card-title">About LogiCore</h2>
+    <p>
+        LogiCore is an advanced logistics platform designed to optimize your supply chain operations. 
+        Our system combines real-time data, AI-powered recommendations, and efficient route planning 
+        to help you make smarter logistics decisions.
+    </p>
+    <p>
+        With LogiCore, you can:
+    </p>
+    <ul>
+        <li>Get AI-powered packaging recommendations for different product types</li>
+        <li>Find the nearest redistribution centers based on your location</li>
+        <li>Stay updated on recommended packaging materials based on seasonal weather conditions</li>
+    </ul>
+</div>
+{% endblock %} 

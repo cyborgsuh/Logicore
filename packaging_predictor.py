@@ -48,15 +48,41 @@ Answer:"""
     }
 )
 
-# Load the test package
-test_df = pd.read_csv("test_package.csv")
-
-# Recommend for each test case
-for index, row in test_df.iterrows():
-    question = (f"What packaging should be used for a {row['Product_Type']} "
-                f"that weighs {row['Weight_kg']}kg, is fragile: {row['Fragile']}, "
-                f"requires {row['Temp_Condition']} temperature and "
-                f"{row['Humidity_Level']} humidity level?")
+def recommend_packaging(product_type, weight, fragile, temp_condition, humidity_level):
+    """
+    Recommend packaging for a product based on its characteristics.
+    
+    Args:
+        product_type (str): Type of product (e.g. Electronics, Clothing)
+        weight (float): Weight in kg
+        fragile (str): Whether the product is fragile (Yes/No)
+        temp_condition (str): Temperature condition (e.g. Room Temp, Cold)
+        humidity_level (str): Humidity level (e.g. Low, Medium, High)
+        
+    Returns:
+        str: Recommendation for packaging
+    """
+    question = (f"What packaging should be used for a {product_type} "
+                f"that weighs {weight}kg, is fragile: {fragile}, "
+                f"requires {temp_condition} temperature and "
+                f"{humidity_level} humidity level?")
     
     result = qa_chain.run(question)
-    print(f"Product ID {row['Product_ID']} Recommendation: {result}")
+    return result
+
+# If this script is run directly, test on the test package
+if __name__ == "__main__":
+    # Load the test package
+    test_df = pd.read_csv("test_package.csv")
+
+    # Recommend for each test case
+    for index, row in test_df.iterrows():
+        recommendation = recommend_packaging(
+            row['Product_Type'],
+            row['Weight_kg'],
+            row['Fragile'],
+            row['Temp_Condition'],
+            row['Humidity_Level']
+        )
+        
+        print(f"Product ID {row['Product_ID']} Recommendation: {recommendation}")
