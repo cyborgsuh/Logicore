@@ -1,0 +1,4 @@
+center_name,latitude,longtitude
+Dafz,25.256076,55.376633
+Mirdif,25.217187,55.407012
+Dubai Mall, 25.198515, 55.278802
